@@ -1,0 +1,40 @@
+html {
+	color : #657b83;
+	background-color : #fdf6e3;
+	font-family : sans-serif;
+	word-wrap : break-word;
+}
+
+header {
+	color : #586e75;
+	text-align : center;
+	text-shadow: 5px 2px 20px #657b83;
+}
+
+#recherche {
+	text-align : center;
+}
+
+section {
+	float : left;
+	width : 31%;
+	padding : 0.555555555%;
+	margin : 0.55555555%;
+	border-radius : 15px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 7px #268bd2;
+}
+
+section:hover {
+	box-shadow: inset 0px 0px 5px #b58900, 0px 0px 7px #268bd2;
+/*	transform: rotate(2deg);*/
+}
+
+.nom-domaine {
+	font-family : monospace;
+	text-align : center;
+}
+
+.nom-domaine:hover {
+/*	transform: rotate(-2deg);*/
+}
