@@ -5,7 +5,15 @@ import Html.Attributes exposing (action, attribute, class, content, href, id, la
 
 
 main =
-    view
+    Html.beginnerProgram
+        { model = model
+        , view = view
+        , update = update
+        }
+
+
+
+-- Model
 
 
 type alias Model =
@@ -24,7 +32,30 @@ type alias Link =
     { url : String, title : String, description : String }
 
 
-view =
+model : Model
+model =
+    []
+
+
+
+-- Update
+
+
+type Msg
+    = None
+
+
+update : Msg -> Model -> Model
+update msg model =
+    model
+
+
+
+-- View
+
+
+view : Model -> Html Msg
+view _ =
     node "html"
         [ lang "fr" ]
         [ pageHead
@@ -32,6 +63,7 @@ view =
         ]
 
 
+pageHead : Html Msg
 pageHead =
     node "head"
         []
@@ -50,6 +82,7 @@ pageHead =
         ]
 
 
+pageBody : Html Msg
 pageBody =
     body []
         [ header []
