@@ -5,6 +5,10 @@ import Html.Attributes exposing (action, attribute, class, content, href, id, la
 
 
 main =
+    view
+
+
+view =
     node "html"
         [ lang "fr" ]
         [ pageHead
