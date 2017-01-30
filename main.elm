@@ -8,6 +8,22 @@ main =
     view
 
 
+type alias Model =
+    List Section
+
+
+type alias Section =
+    { name : String, subsections : List Subsection }
+
+
+type alias Subsection =
+    { name : String, links : List Link }
+
+
+type alias Link =
+    { url : String, title : String, description : String }
+
+
 view =
     node "html"
         [ lang "fr" ]
