@@ -31,7 +31,7 @@ pageHead =
             []
         , node "script"
             [ type_ "text/javascript" ]
-            [ text "        " ]
+            [ text "document.getElementById('champ-recherche').focus();" ]
         ]
 
 
