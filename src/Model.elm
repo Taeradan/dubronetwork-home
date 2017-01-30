@@ -19,29 +19,51 @@ type alias Link =
 
 model : Model
 model =
-    [ { name = "section toto :)"
+    [ { name = "dubronetwork.{fr,42}"
       , subsections =
-            [ { name = "subsection riri"
+            [ { name = "Perso"
               , links =
-                    [ { url = "http://package.elm-lang.org/packages/elm-lang/core/latest", title = "Elm Core Libraries", description = "Every Elm project needs the core libraries. " }
-                    , { url = "https://github.com/Taeradan/dubronetwork-home", title = "dubronetwork-home", description = "New home page for my personal domain dubronetwork" }
+                    [ { url = "http://www.dubronetwork.fr/~taeradan", title = "Taeradan's blog", description = "Le blog du maîîîîîtrrrre !" }
+                    , { url = "http://wed.dubronetwork.fr/", title = "Mariage", description = "Quelques photos" }
                     ]
               }
-            , { name = "subsection loulou"
+            , { name = "Utilitaires"
               , links =
-                    [ { url = "http://package.elm-lang.org/packages/elm-lang/core/latest", title = "Elm Core Libraries", description = "Every Elm project needs the core libraries. " }
-                    , { url = "https://github.com/Taeradan/dubronetwork-home", title = "sdcdd-home", description = "New home page for my personal domain dubronetwork" }
-                    , { url = "https://github.com/Taeradan/dubronetwork-home", title = "dubronetwork-home", description = "New home page for my personal domain dubronetwork" }
-                    , { url = "https://github.com/Taeradan/dubronetwork-home", title = "dubronetwork-home", description = "New home page for my personal domain dubronetwork" }
-                    , { url = "https://github.com/Taeradan/dubronetwork-home", title = "gdx-home", description = "New home page for my personal domain dubronetwork" }
+                    [ { url = "http://agendav.dubronetwork.fr", title = "Agendav", description = "Pour consulter son agenda" }
+                    , { url = "http://feeds.dubronetwork.fr", title = "TT-RSS", description = "Pour suivre ses flux préférés" }
+                    , { url = "http://jyraphe.dubronetwork.fr", title = "Jyraphe", description = "Service de partage de fichiers" }
+                    , { url = "http://webmail.dubronetwork.fr", title = "Webmail", description = "Pour lire ses mails hébergés @dubronetwork.fr" }
+                    , { url = "http://indefero.dubronetwork.fr/indefero", title = "Indefero", description = "Gestion de projets pour GIT" }
+                    , { url = "http://papillon.dubronetwork.fr", title = "Papillon", description = "Service de sondages" }
+                    ]
+              }
+            , { name = "Miroirs"
+              , links =
+                    [ { url = "http://wikileaks.dubronetwork.fr", title = "Wikileaks (accueil+cablegate)", description = "Un des nombreux miroirs officiels de WIkileaks (plus de 1600 miroirs)" }
+                    , { url = "http://wardiary.dubronetwork.fr", title = "Wikileaks (wardiary)", description = "Les documents de Wikileaks sur la guerre en Afghanistan" }
+                    , { url = "http://saaty.dubronetwork.fr", title = "Saaty", description = "Le site du père d'AHP" }
                     ]
               }
             ]
       }
-    , { name = "section tata :)"
+    , { name = "teleragno.{fr,42}"
       , subsections =
-            [ { name = "subsection rigfgggri", links = [] }
-            , { name = "subsection loulou", links = [] }
+            [ { name = ""
+              , links =
+                    [ { url = "http://www.teleragno.fr", title = "Teleragno", description = "Le site du FAI associatif Teleragno" }
+                    , { url = "http://lists.teleragno.fr", title = "Mailman", description = "Interface de gestion des listes de diffusion" }
+                    ]
+              }
+            ]
+      }
+    , { name = "global-anycast.net"
+      , subsections =
+            [ { name = ""
+              , links =
+                    [ { url = "http://www.global-anycast.net", title = "Global Anycast", description = "Le site du projet de réseau anycast mondial" }
+                    , { url = "http://mail.global-anycast.net", title = "Mailman", description = "Interface de gestion des listes de diffusion" }
+                    ]
+              }
             ]
       }
     ]
