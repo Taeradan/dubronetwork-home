@@ -23,7 +23,7 @@ pageHead =
         [ node "meta"
             [ content "text/html;charset=utf-8", attribute "http-equiv" "Content-Type" ]
             []
-        , node "title"
+        , title
             []
             [ text "Portail Dubronetwork" ]
         , node "link"
@@ -37,8 +37,7 @@ pageHead =
 
 bodyGenerator : Model -> Html Msg
 bodyGenerator m =
-    body []
-        (pageHeader :: (printModel m))
+    body [] (pageHeader :: (printModel m))
 
 
 printModel : Model -> List (Html Msg)
@@ -57,10 +56,8 @@ printSection m_section =
 printSubsection : Subsection -> Html Msg
 printSubsection m_subsection =
     div []
-        [ h3 []
-            [ text m_subsection.name ]
-        , dl []
-            (concatMap printLink m_subsection.links)
+        [ h3 [] [ text m_subsection.name ]
+        , dl [] (concatMap printLink m_subsection.links)
         ]
 
 
@@ -74,15 +71,13 @@ printLink link =
 pageHeader : Html Msg
 pageHeader =
     header []
-        [ h1 []
-            [ text "Portail Dubronetwork" ]
+        [ h1 [] [ text "Portail Dubronetwork" ]
         , form [ action "http://duckduckgo.com", id "recherche", method "get" ]
             [ p []
                 [ input [ id "champ-recherche", attribute "maxlength" "255", name "q", attribute "size" "31", type_ "text", value "" ]
                     []
                 , text "            "
-                , input [ type_ "submit", value "DuckDuckGo!" ]
-                    []
+                , input [ type_ "submit", value "DuckDuckGo!" ] []
                 ]
             ]
         ]
