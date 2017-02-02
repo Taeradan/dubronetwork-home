@@ -23,7 +23,7 @@ pageHead =
         [ node "meta"
             [ content "text/html;charset=utf-8", attribute "http-equiv" "Content-Type" ]
             []
-        , title
+        , node "title"
             []
             [ text "Portail Dubronetwork" ]
         , node "link"
