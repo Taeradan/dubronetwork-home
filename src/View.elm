@@ -12,7 +12,7 @@ view model =
     node "html"
         [ lang "fr" ]
         [ pageHead
-        , bodyGenerator model
+        , pageBody model
         ]
 
 
@@ -35,14 +35,14 @@ pageHead =
         ]
 
 
-bodyGenerator : Model -> Html Msg
-bodyGenerator m =
-    body [] (pageHeader :: (printModel m))
+pageBody : Model -> Html Msg
+pageBody m =
+    body [] (bodyHeader :: (printModel m))
 
 
 printModel : Model -> List (Html Msg)
-printModel sections =
-    map printSection sections
+printModel m =
+    map printSection m
 
 
 printSection : Section -> Html Msg
@@ -68,8 +68,8 @@ printLink link =
     ]
 
 
-pageHeader : Html Msg
-pageHeader =
+bodyHeader : Html Msg
+bodyHeader =
     header []
         [ h1 [] [ text "Portail Dubronetwork" ]
         , form [ action "http://duckduckgo.com", id "recherche", method "get" ]
