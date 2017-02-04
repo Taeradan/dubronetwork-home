@@ -1,7 +1,7 @@
-all: format
+all: build
 
-build:
-	elm-make **/*.elm
+build: format
+	elm-make --warn **/*.elm
 
 format:
 	elm-format-0.18 --yes **/*.elm
