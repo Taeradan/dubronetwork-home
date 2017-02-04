@@ -6,6 +6,7 @@ import Update exposing (update)
 import View exposing (view)
 
 
+main : Program Never Model.Model Update.Msg
 main =
     Html.beginnerProgram
         { model = model
