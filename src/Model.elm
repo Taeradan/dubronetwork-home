@@ -17,8 +17,8 @@ type alias Link =
     { url : String, title : String, description : String }
 
 
-model : Model
-model =
+dubronetworkInit : Model
+dubronetworkInit =
     [ { name = "dubronetwork.{fr,42}"
       , subsections =
             [ { name = "Perso"

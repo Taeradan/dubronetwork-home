@@ -7,6 +7,6 @@ type Msg
     = None
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    model
+    ( model, Cmd.none )
