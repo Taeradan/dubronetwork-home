@@ -1,9 +1,9 @@
 module View exposing (..)
 
-import Html exposing (Html, a, body, dd, div, dl, dt, form, h1, h2, h3, header, input, node, p, section, text)
+import Html exposing (Html, a, body, dd, div, dl, dt, form, h1, h2, h3, header, input, node, p, section, span, text)
 import Html.Attributes exposing (action, attribute, class, content, href, id, lang, media, method, name, rel, title, type_, value)
-import List exposing (concatMap, map)
-import Model exposing (Link, Model, Section, Subsection)
+import List exposing (concat, concatMap, map)
+import Model exposing (Link, LinkState(Unknown), Model, Section, Subsection)
 import Update exposing (Msg)
 
 
@@ -64,8 +64,22 @@ printSubsection m_subsection =
 printLink : Link -> List (Html Msg)
 printLink link =
     [ dt [] [ a [ href link.url ] [ text link.title ] ]
-    , dd [] [ text link.description ]
+    , dd [] [ text link.description, printState link.state ]
     ]
+
+
+printState : LinkState -> Html Msg
+printState state =
+    let
+        stateText =
+            case state of
+                Unknown ->
+                    "unkown"
+
+                _ ->
+                    ""
+    in
+        span [] [ text " (", text stateText, text ")" ]
 
 
 bodyHeader : Html Msg
