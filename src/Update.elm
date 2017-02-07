@@ -4,7 +4,8 @@ import Model exposing (Model)
 
 
 type Msg
-    = None
+    = UpdateState
+    | NewState Model
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
