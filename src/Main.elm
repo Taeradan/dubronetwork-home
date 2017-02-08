@@ -2,7 +2,8 @@ module Main exposing (..)
 
 import Html exposing (Html)
 import Model exposing (Model, dubronetworkInit)
-import Update exposing (Msg, update)
+import Time exposing (second)
+import Update exposing (Msg(UpdateState), update)
 import View exposing (view)
 
 
@@ -23,4 +24,4 @@ init =
 
 subscriptions : Model -> Sub Msg
 subscriptions m =
-    Sub.none
+    Time.every second (\x -> UpdateState)
