@@ -82,8 +82,8 @@ printState state =
                 Reachable details ->
                     "unreachable: " ++ toString details
     in
---        span [] [ br [] [] , text "(", text stateText, text ")" ]
-        span [] [ br [] [] , text "(", text (toString state), text ")" ]
+        --span [] [ br [] [] , text "(", text stateText, text ")" ]
+        span [] [ br [] [], text "(", text (toString state), text ")" ]
 
 
 bodyHeader : Html Msg

@@ -11,5 +11,13 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        UpdateState -> (model, Cmd.none)
-        NewState newModel -> (newModel, Cmd.none)
+        UpdateState ->
+            ( model, updateState model )
+
+        NewState newModel ->
+            ( newModel, Cmd.none )
+
+
+updateState : Model -> Cmd Msg
+updateState model =
+    Cmd.none
