@@ -1,9 +1,9 @@
 module View exposing (..)
 
-import Html exposing (Html, a, body, dd, div, dl, dt, form, h1, h2, h3, header, input, node, p, section, span, text)
+import Html exposing (Html, a, body, br, dd, div, dl, dt, form, h1, h2, h3, header, input, node, p, section, span, text)
 import Html.Attributes exposing (action, attribute, class, content, href, id, lang, media, method, name, rel, title, type_, value)
 import List exposing (concat, concatMap, map)
-import Model exposing (Link, LinkState(Unknown), Model, Section, Subsection)
+import Model exposing (Link, LinkState(..), Model, Section, Subsection)
 import Update exposing (Msg)
 
 
@@ -76,10 +76,14 @@ printState state =
                 Unknown ->
                     "unkown"
 
-                _ ->
-                    ""
+                Unreachable details ->
+                    "reachable:" ++ toString details
+
+                Reachable details ->
+                    "unreachable: " ++ toString details
     in
-        span [] [ text " (", text stateText, text ")" ]
+--        span [] [ br [] [] , text "(", text stateText, text ")" ]
+        span [] [ br [] [] , text "(", text (toString state), text ")" ]
 
 
 bodyHeader : Html Msg
