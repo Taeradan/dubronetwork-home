@@ -24,4 +24,4 @@ init =
 
 subscriptions : Model -> Sub Msg
 subscriptions m =
-    Time.every second (\x -> UpdateState)
+    Time.every (10 * second) (\x -> UpdateState)
