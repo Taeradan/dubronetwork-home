@@ -44,4 +44,4 @@ toLinkState url result =
 
 applyLinkState : Model -> ( LinkUrl, LinkState ) -> Model
 applyLinkState model ( linkUrl, linkState ) =
-    model
+    { model | linkStates = Dict.insert linkUrl linkState model.linkStates }
