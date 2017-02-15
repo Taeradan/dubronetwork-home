@@ -16,25 +16,6 @@ view model =
         ]
 
 
-pageHead : Html Msg
-pageHead =
-    node "head"
-        []
-        [ node "meta"
-            [ content "text/html;charset=utf-8", attribute "http-equiv" "Content-Type" ]
-            []
-        , node "title"
-            []
-            [ text "Portail Dubronetwork" ]
-        , node "link"
-            [ href "/default.css", media "screen", rel "stylesheet", title "Style par défaut", type_ "text/css" ]
-            []
-        , node "script"
-            [ type_ "text/javascript" ]
-            [ text "document.getElementById('champ-recherche').focus();" ]
-        ]
-
-
 pageBody : Model -> Html Msg
 pageBody m =
     body [] (bodyHeader :: (printModel m))
@@ -83,6 +64,25 @@ printState state =
                     "reachable"
     in
         span [] [ br [] [], text "(", text stateText, text ")" ]
+
+
+pageHead : Html Msg
+pageHead =
+    node "head"
+        []
+        [ node "meta"
+            [ content "text/html;charset=utf-8", attribute "http-equiv" "Content-Type" ]
+            []
+        , node "title"
+            []
+            [ text "Portail Dubronetwork" ]
+        , node "link"
+            [ href "/default.css", media "screen", rel "stylesheet", title "Style par défaut", type_ "text/css" ]
+            []
+        , node "script"
+            [ type_ "text/javascript" ]
+            [ text "document.getElementById('champ-recherche').focus();" ]
+        ]
 
 
 bodyHeader : Html Msg
