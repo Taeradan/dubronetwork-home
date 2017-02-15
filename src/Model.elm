@@ -5,7 +5,7 @@ import Http
 
 
 type alias Model =
-    { pageStructure : List Section, linkStates : LinksStates }
+    { pageStructure : List Section, linkStates : LinkStates }
 
 
 type alias Section =
@@ -24,7 +24,7 @@ type alias Link =
     { url : LinkUrl, title : String, description : String }
 
 
-type alias LinksStates =
+type alias LinkStates =
     Dict String LinkState
 
 
