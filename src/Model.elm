@@ -26,7 +26,7 @@ type alias Link =
 
 
 type alias LinkStates =
-    Dict String LinkState
+    Dict LinkUrl LinkState
 
 
 type LinkState
