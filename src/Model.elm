@@ -14,7 +14,11 @@ type alias Subsection =
 
 
 type alias Link =
-    { url : String, title : String, description : String, state : LinkState }
+    { url : LinkUrl, title : String, description : String}
+
+
+type LinksStates =
+    Dict String LinkState
 
 
 type LinkState

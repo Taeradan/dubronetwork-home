@@ -64,7 +64,7 @@ printSubsection m_subsection =
 printLink : Link -> List (Html Msg)
 printLink link =
     [ dt [] [ a [ href link.url ] [ text link.title ] ]
-    , dd [] [ text link.description, printState link.state ]
+    , dd [] [ text link.description ]
     ]
 
 
