@@ -1,5 +1,7 @@
 module Model exposing (..)
 
+import Http
+
 
 type alias Model =
     { pageStructure : List Section }
@@ -23,5 +25,5 @@ type LinksStates =
 
 type LinkState
     = Unknown
-    | Unreachable { return : String }
-    | Reachable { return : String, latency : Float }
+    | Unreachable { error : Http.Error }
+    | Reachable

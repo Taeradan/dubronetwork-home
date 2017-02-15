@@ -76,11 +76,11 @@ printState state =
                 Unknown ->
                     "unkown"
 
-                Unreachable details ->
-                    "reachable:" ++ toString details
+                Unreachable error ->
+                    "unreachable:" ++ toString error
 
-                Reachable details ->
-                    "unreachable: " ++ toString details
+                Reachable ->
+                    "reachable"
     in
         --span [] [ br [] [] , text "(", text stateText, text ")" ]
         span [] [ br [] [], text "(", text (toString state), text ")" ]
