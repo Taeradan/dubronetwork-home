@@ -15,6 +15,9 @@ type alias Subsection =
     { name : String, links : List Link }
 
 
+type alias LinkUrl = String
+
+
 type alias Link =
     { url : LinkUrl, title : String, description : String}
 
