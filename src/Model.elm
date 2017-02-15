@@ -2,7 +2,7 @@ module Model exposing (..)
 
 
 type alias Model =
-    List Section
+    { pageStructure : List Section }
 
 
 type alias Section =

@@ -33,4 +33,4 @@ updateState model =
         updateLink m_link =
             Http.send (\x -> NewState model) <| Http.getString m_link.url
     in
-        batch (concatMap updateSection model)
+        batch (concatMap updateSection model.pageStructure)

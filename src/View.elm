@@ -42,7 +42,7 @@ pageBody m =
 
 printModel : Model -> List (Html Msg)
 printModel m =
-    map printSection m
+    map printSection m.pageStructure
 
 
 printSection : Section -> Html Msg

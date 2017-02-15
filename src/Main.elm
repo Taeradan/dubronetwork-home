@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Html exposing (Html)
-import Model exposing (LinkState(Unknown), Model)
+import Model exposing (..)
 import Time exposing (second)
 import Update exposing (Msg(UpdateState), update)
 import View exposing (view)
@@ -19,7 +19,7 @@ main =
 
 init : ( Model, Cmd Msg )
 init =
-    ( dubronetworkInit, Cmd.none )
+    ( { pageStructure = dubronetworkInit }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -27,7 +27,7 @@ subscriptions m =
     Time.every (10 * second) (\x -> UpdateState)
 
 
-dubronetworkInit : Model
+dubronetworkInit : List Section
 dubronetworkInit =
     [ { name = "dubronetwork.{fr,42}"
       , subsections =
