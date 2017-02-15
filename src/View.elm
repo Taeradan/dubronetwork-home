@@ -1,5 +1,6 @@
 module View exposing (..)
 
+import Dict
 import Html exposing (Html, a, body, br, dd, div, dl, dt, form, h1, h2, h3, header, input, node, p, section, span, text)
 import Html.Attributes exposing (action, attribute, class, content, href, id, lang, media, method, name, rel, title, type_, value)
 import List exposing (concat, concatMap, map)
@@ -45,23 +46,26 @@ printSubsection linkStates m_subsection =
 printLink : LinkStates -> Link -> List (Html Msg)
 printLink linkStates link =
     [ dt [] [ a [ href link.url ] [ text link.title ] ]
-    , dd [] [ text link.description ]
+    , dd [] [ text link.description, printState <| Dict.get link.url linkStates ]
     ]
 
 
-printState : LinkState -> Html Msg
+printState : Maybe LinkState -> Html Msg
 printState state =
     let
         stateText =
             case state of
-                Unknown ->
+                Just Unknown ->
                     "unkown"
 
-                Unreachable error ->
+                Just (Unreachable error) ->
                     "unreachable:" ++ toString error
 
-                Reachable ->
+                Just Reachable ->
                     "reachable"
+
+                Nothing ->
+                    "url not in dictionary !"
     in
         span [] [ br [] [], text "(", text stateText, text ")" ]
 
