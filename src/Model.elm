@@ -38,3 +38,8 @@ type LinkState
 getLinksFromStructure : List Section -> List Link
 getLinksFromStructure pageStructure =
     concatMap (\x -> concatMap (\x -> x.links) x.subsections) pageStructure
+
+
+dummyLinkStates : LinkStates
+dummyLinkStates =
+    Dict.insert "" Unknown Dict.empty
