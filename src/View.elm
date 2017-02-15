@@ -3,7 +3,7 @@ module View exposing (..)
 import Html exposing (Html, a, body, br, dd, div, dl, dt, form, h1, h2, h3, header, input, node, p, section, span, text)
 import Html.Attributes exposing (action, attribute, class, content, href, id, lang, media, method, name, rel, title, type_, value)
 import List exposing (concat, concatMap, map)
-import Model exposing (Link, LinkState(..), Model, Section, Subsection)
+import Model exposing (..)
 import Update exposing (Msg)
 
 
@@ -23,27 +23,27 @@ pageBody m =
 
 printModel : Model -> List (Html Msg)
 printModel m =
-    map printSection m.pageStructure
+    map (printSection m.linkStates) m.pageStructure
 
 
-printSection : Section -> Html Msg
-printSection m_section =
+printSection : LinkStates -> Section -> Html Msg
+printSection linkStates m_section =
     section []
         ((h2 [ class "nom-domaine" ] [ text m_section.name ])
-            :: (map printSubsection m_section.subsections)
+            :: (map (printSubsection linkStates) m_section.subsections)
         )
 
 
-printSubsection : Subsection -> Html Msg
-printSubsection m_subsection =
+printSubsection : LinkStates -> Subsection -> Html Msg
+printSubsection linkStates m_subsection =
     div []
         [ h3 [] [ text m_subsection.name ]
-        , dl [] (concatMap printLink m_subsection.links)
+        , dl [] (concatMap (printLink linkStates) m_subsection.links)
         ]
 
 
-printLink : Link -> List (Html Msg)
-printLink link =
+printLink : LinkStates -> Link -> List (Html Msg)
+printLink linkStates link =
     [ dt [] [ a [ href link.url ] [ text link.title ] ]
     , dd [] [ text link.description ]
     ]
