@@ -82,8 +82,7 @@ printState state =
                 Reachable ->
                     "reachable"
     in
-        --span [] [ br [] [] , text "(", text stateText, text ")" ]
-        span [] [ br [] [], text "(", text (toString state), text ")" ]
+        span [] [ br [] [], text "(", text stateText, text ")" ]
 
 
 bodyHeader : Html Msg
