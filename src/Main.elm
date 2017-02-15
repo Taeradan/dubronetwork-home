@@ -5,7 +5,7 @@ import Html exposing (Html)
 import List
 import Model exposing (..)
 import Time exposing (second)
-import Update exposing (Msg(UpdateState), update)
+import Update exposing (Msg(UpdateLinkStates), update)
 import View exposing (view)
 
 
@@ -26,7 +26,7 @@ init =
 
 subscriptions : Model -> Sub Msg
 subscriptions m =
-    Time.every (10 * second) (\x -> UpdateState)
+    Time.every (10 * second) (\x -> UpdateLinkStates)
 
 
 generateInitialLinkStates : List Section -> LinkStates

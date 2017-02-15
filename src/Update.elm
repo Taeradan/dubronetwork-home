@@ -1,5 +1,6 @@
 module Update exposing (..)
 
+import Dict
 import Http
 import List exposing (concatMap, map)
 import Model exposing (..)
@@ -7,30 +8,40 @@ import Platform.Cmd exposing (batch)
 
 
 type Msg
-    = UpdateState
-    | NewState Model
+    = UpdateLinkStates
+    | NewLinkState ( LinkUrl, LinkState )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        UpdateState ->
-            ( model, updateState model )
+        UpdateLinkStates ->
+            ( model, updateLinkStates model.linkStates )
 
-        NewState newModel ->
-            ( newModel, Cmd.none )
+        NewLinkState newLinkState ->
+            ( applyLinkState model newLinkState, Cmd.none )
 
 
-updateState : Model -> Cmd Msg
-updateState model =
-    let
-        updateSection m_section =
-            concatMap updateSubsection m_section.subsections
+updateLinkStates : LinkStates -> Cmd Msg
+updateLinkStates linkStates =
+    batch (map sendRequest <| Dict.keys linkStates)
 
-        updateSubsection m_subsection =
-            map updateLink m_subsection.links
 
-        updateLink m_link =
-            Http.send (\x -> NewState model) <| Http.getString m_link.url
-    in
-        batch (concatMap updateSection model.pageStructure)
+sendRequest : LinkUrl -> Cmd Msg
+sendRequest url =
+    Http.send (toLinkState url) <| Http.getString url
+
+
+toLinkState : LinkUrl -> Result Http.Error a -> Msg
+toLinkState url result =
+    case result of
+        Err error ->
+            NewLinkState ( url, Unreachable { error = error } )
+
+        Ok _ ->
+            NewLinkState ( url, Reachable )
+
+
+applyLinkState : Model -> ( LinkUrl, LinkState ) -> Model
+applyLinkState model ( linkUrl, linkState ) =
+    model
