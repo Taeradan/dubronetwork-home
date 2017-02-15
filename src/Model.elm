@@ -15,15 +15,16 @@ type alias Subsection =
     { name : String, links : List Link }
 
 
-type alias LinkUrl = String
+type alias LinkUrl =
+    String
 
 
 type alias Link =
-    { url : LinkUrl, title : String, description : String}
+    { url : LinkUrl, title : String, description : String }
 
 
-type LinksStates =
-    Dict String LinkState
+type LinksStates
+    = Dict String LinkState
 
 
 type LinkState
