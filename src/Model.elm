@@ -2,6 +2,7 @@ module Model exposing (..)
 
 import Dict exposing (Dict)
 import Http
+import List exposing (concatMap)
 
 
 type alias Model =
@@ -32,3 +33,8 @@ type LinkState
     = Unknown
     | Unreachable { error : Http.Error }
     | Reachable
+
+
+getLinksFromStructure : List Section -> List Link
+getLinksFromStructure pageStructure =
+    concatMap (\x -> concatMap (\x -> x.links) x.subsections) pageStructure

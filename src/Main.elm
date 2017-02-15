@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Dict
 import Html exposing (Html)
+import List
 import Model exposing (..)
 import Time exposing (second)
 import Update exposing (Msg(UpdateState), update)
@@ -20,12 +21,21 @@ main =
 
 init : ( Model, Cmd Msg )
 init =
-    ( { pageStructure = initialPageStructure, linkStates = Dict.insert "" Unknown Dict.empty }, Cmd.none )
+    ( { pageStructure = initialPageStructure, linkStates = generateInitialLinkStates initialPageStructure }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions m =
     Time.every (10 * second) (\x -> UpdateState)
+
+
+generateInitialLinkStates : List Section -> LinkStates
+generateInitialLinkStates pageStructure =
+    let
+        linksList =
+            getLinksFromStructure pageStructure
+    in
+        Dict.fromList <| List.map (\x -> ( x.url, Unknown )) linksList
 
 
 initialPageStructure : List Section
