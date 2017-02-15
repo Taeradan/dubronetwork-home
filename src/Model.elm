@@ -1,10 +1,11 @@
 module Model exposing (..)
 
+import Dict exposing (Dict)
 import Http
 
 
 type alias Model =
-    { pageStructure : List Section }
+    { pageStructure : List Section, linkStates : LinksStates }
 
 
 type alias Section =
@@ -23,8 +24,8 @@ type alias Link =
     { url : LinkUrl, title : String, description : String }
 
 
-type LinksStates
-    = Dict String LinkState
+type alias LinksStates =
+    Dict String LinkState
 
 
 type LinkState
