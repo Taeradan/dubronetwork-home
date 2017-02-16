@@ -24,7 +24,7 @@ update msg model =
 
 updateLinkStates : LinkStates -> Cmd Msg
 updateLinkStates linkStates =
-    batch (map sendRequest <| Dict.keys linkStates)
+    batch << map sendRequest << Dict.keys <| linkStates
 
 
 sendRequest : LinkUrl -> Cmd Msg

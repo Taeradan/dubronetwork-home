@@ -31,7 +31,7 @@ subscriptions m =
 
 generateInitialLinkStates : List Section -> LinkStates
 generateInitialLinkStates pageStructure =
-    Dict.fromList <| List.map (\x -> ( x.url, Unknown )) <| getLinksFromStructure <| pageStructure
+    Dict.fromList << List.map (\x -> ( x.url, Unknown )) << getLinksFromStructure <| pageStructure
 
 
 initialPageStructure : List Section

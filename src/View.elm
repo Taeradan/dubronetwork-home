@@ -19,7 +19,7 @@ view model =
 
 pageBody : Model -> Html Msg
 pageBody m =
-    body [] (bodyHeader :: (printModel m))
+    body [] <| bodyHeader :: printModel m
 
 
 printModel : Model -> List (Html Msg)
@@ -29,17 +29,15 @@ printModel m =
 
 printSection : LinkStates -> Section -> Html Msg
 printSection linkStates m_section =
-    section []
-        ((h2 [ class "nom-domaine" ] [ text m_section.name ])
-            :: (map (printSubsection linkStates) m_section.subsections)
-        )
+    section [] <| h2 [ class "nom-domaine" ] [ text m_section.name ]
+            :: map (printSubsection linkStates) m_section.subsections
 
 
 printSubsection : LinkStates -> Subsection -> Html Msg
 printSubsection linkStates m_subsection =
     div []
         [ h3 [] [ text m_subsection.name ]
-        , dl [] (concatMap (printLink linkStates) m_subsection.links)
+        , dl [] <| concatMap (printLink linkStates) m_subsection.links
         ]
 
 
