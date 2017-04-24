@@ -17,9 +17,43 @@ view model =
         ]
 
 
+pageHead : Html Msg
+pageHead =
+    node "head"
+        []
+        [ node "meta"
+            [ content "text/html;charset=utf-8", attribute "http-equiv" "Content-Type" ]
+            []
+        , node "title"
+            []
+            [ text "Portail Dubronetwork" ]
+        , node "link"
+            [ href "/default.css", media "screen", rel "stylesheet", title "Style par défaut", type_ "text/css" ]
+            []
+        , node "script"
+            [ type_ "text/javascript" ]
+            [ text "document.getElementById('champ-recherche').focus();" ]
+        ]
+
+
 pageBody : Model -> Html Msg
 pageBody m =
-    body [] <| bodyHeader :: printModel m
+    body [] <| bodyHeader m :: printModel m
+
+
+bodyHeader : Model -> Html Msg
+bodyHeader m =
+    header []
+        [ h1 [] [ text "Portail Dubronetwork" ]
+        , form [ action "http://duckduckgo.com", id "recherche", method "get" ]
+            [ p []
+                [ input [ id "champ-recherche", attribute "maxlength" "255", name "q", attribute "size" "31", type_ "text", value "" ]
+                    []
+                , text "            "
+                , input [ type_ "submit", value "DuckDuckGo!" ] []
+                ]
+            ]
+        ]
 
 
 printModel : Model -> List (Html Msg)
@@ -67,37 +101,3 @@ printState state =
                     "url not in dictionary !"
     in
         span [] [ br [] [], text "(", text stateText, text ")" ]
-
-
-pageHead : Html Msg
-pageHead =
-    node "head"
-        []
-        [ node "meta"
-            [ content "text/html;charset=utf-8", attribute "http-equiv" "Content-Type" ]
-            []
-        , node "title"
-            []
-            [ text "Portail Dubronetwork" ]
-        , node "link"
-            [ href "/default.css", media "screen", rel "stylesheet", title "Style par défaut", type_ "text/css" ]
-            []
-        , node "script"
-            [ type_ "text/javascript" ]
-            [ text "document.getElementById('champ-recherche').focus();" ]
-        ]
-
-
-bodyHeader : Html Msg
-bodyHeader =
-    header []
-        [ h1 [] [ text "Portail Dubronetwork" ]
-        , form [ action "http://duckduckgo.com", id "recherche", method "get" ]
-            [ p []
-                [ input [ id "champ-recherche", attribute "maxlength" "255", name "q", attribute "size" "31", type_ "text", value "" ]
-                    []
-                , text "            "
-                , input [ type_ "submit", value "DuckDuckGo!" ] []
-                ]
-            ]
-        ]
