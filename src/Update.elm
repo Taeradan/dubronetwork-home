@@ -5,11 +5,14 @@ import Http
 import List exposing (concatMap, map)
 import Model exposing (..)
 import Platform.Cmd exposing (batch)
+import Time exposing (Time)
 
 
 type Msg
     = UpdateLinkStates
     | NewLinkState ( LinkUrl, LinkState )
+    | NewTimerValue Time
+    | NewTimerUnit Time
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -20,6 +23,12 @@ update msg model =
 
         NewLinkState newLinkState ->
             ( applyLinkState model newLinkState, Cmd.none )
+
+        NewTimerValue value ->
+            ( model, Cmd.none )
+
+        NewTimerUnit unit ->
+            ( model, Cmd.none )
 
 
 updateLinkStates : LinkStates -> Cmd Msg
