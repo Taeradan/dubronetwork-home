@@ -29,7 +29,7 @@ updateLinkStates linkStates =
 
 sendRequest : LinkUrl -> Cmd Msg
 sendRequest url =
-    Http.send (toLinkState url) <| Http.getString url
+    Http.send (toLinkState url) <| Http.getString ("https://crossorigin.me/" ++ url)
 
 
 toLinkState : LinkUrl -> Result Http.Error a -> Msg
