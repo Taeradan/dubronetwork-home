@@ -3,10 +3,11 @@ module Model exposing (..)
 import Dict exposing (Dict)
 import Http
 import List exposing (concatMap)
+import Time exposing (Time)
 
 
 type alias Model =
-    { pageStructure : List Section, linkStates : LinkStates }
+    { pageStructure : List Section, linkStates : LinkStates, configuration : Configuration }
 
 
 type alias Section =
@@ -33,6 +34,10 @@ type LinkState
     = Unknown
     | Unreachable { error : Http.Error }
     | Reachable
+
+
+type alias Configuration =
+    { timerUnit : Time, timerValue : Time }
 
 
 getLinksFromStructure : List Section -> List Link

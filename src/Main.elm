@@ -21,12 +21,12 @@ main =
 
 init : ( Model, Cmd Msg )
 init =
-    ( { pageStructure = initialPageStructure, linkStates = generateInitialLinkStates initialPageStructure }, Cmd.none )
+    ( { pageStructure = initialPageStructure, linkStates = generateInitialLinkStates initialPageStructure, configuration = initialConfiguration }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions m =
-    Time.every (10 * second) (\x -> UpdateLinkStates)
+    Time.every (m.configuration.timerValue * m.configuration.timerUnit) (\x -> UpdateLinkStates)
 
 
 generateInitialLinkStates : List Section -> LinkStates
@@ -84,3 +84,8 @@ initialPageStructure =
             ]
       }
     ]
+
+
+initialConfiguration : Configuration
+initialConfiguration =
+    { timerUnit = second, timerValue = 60 }
