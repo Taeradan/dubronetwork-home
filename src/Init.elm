@@ -3,12 +3,17 @@ module Init exposing (..)
 import Dict
 import Model exposing (Configuration, LinkState(Unknown), LinkStates, Model, Section, getLinksFromStructure)
 import Time exposing (second)
-import Update exposing (Msg)
+import Update exposing (..)
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( { pageStructure = initialPageStructure, linkStates = generateInitialLinkStates initialPageStructure, configuration = initialConfiguration }, Cmd.none )
+    ( initialModel, updateLinkStates initialModel.linkStates )
+
+
+initialModel : Model
+initialModel =
+    { pageStructure = initialPageStructure, linkStates = generateInitialLinkStates initialPageStructure, configuration = initialConfiguration }
 
 
 generateInitialLinkStates : List Section -> LinkStates
