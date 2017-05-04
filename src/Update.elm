@@ -11,8 +11,8 @@ import Time exposing (Time)
 type Msg
     = UpdateLinkStates
     | NewLinkState ( LinkUrl, LinkState )
-    | NewTimerValue Time
-    | NewTimerUnit Time
+    | SetTimerValue Time
+    | SetTimerUnit Time
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -24,11 +24,11 @@ update msg model =
         NewLinkState newLinkState ->
             ( applyLinkState model newLinkState, Cmd.none )
 
-        NewTimerValue value ->
-            ( model, Cmd.none )
+        SetTimerValue value ->
+            ( setTimerValue value model, Cmd.none )
 
-        NewTimerUnit unit ->
-            ( model, Cmd.none )
+        SetTimerUnit unit ->
+            ( setTimerUnit unit model, Cmd.none )
 
 
 updateLinkStates : LinkStates -> Cmd Msg
@@ -54,3 +54,27 @@ toLinkState url result =
 applyLinkState : Model -> ( LinkUrl, LinkState ) -> Model
 applyLinkState model ( linkUrl, linkState ) =
     { model | linkStates = Dict.insert linkUrl linkState model.linkStates }
+
+
+setTimerValue : Time -> Model -> Model
+setTimerValue value model =
+    let
+        oldConfiguration =
+            model.configuration
+
+        newConfiguration =
+            { oldConfiguration | timerValue = value }
+    in
+        { model | configuration = newConfiguration }
+
+
+setTimerUnit : Time -> Model -> Model
+setTimerUnit unit model =
+    let
+        oldConfiguration =
+            model.configuration
+
+        newConfiguration =
+            { oldConfiguration | timerUnit = unit }
+    in
+        { model | configuration = newConfiguration }
