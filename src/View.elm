@@ -1,11 +1,14 @@
 module View exposing (..)
 
-import Dict
-import Html exposing (Html, a, body, br, dd, div, dl, dt, form, h1, h2, h3, header, input, node, p, section, span, text)
-import Html.Attributes exposing (action, attribute, class, content, href, id, lang, media, method, name, rel, title, type_, value)
+import Dict exposing (Dict)
+import Html exposing (Html, a, body, br, dd, div, dl, dt, form, h1, h2, h3, header, input, node, option, p, section, select, span, text)
+import Html.Attributes exposing (action, attribute, autofocus, class, content, href, id, lang, media, method, name, rel, title, type_, value)
+import Html.Events exposing (onInput)
 import List exposing (concat, concatMap, map)
 import Model exposing (..)
-import Update exposing (Msg)
+import Result exposing (toMaybe)
+import Time exposing (Time)
+import Update exposing (Msg(SetTimerUnit, SetTimerValue))
 
 
 view : Model -> Html Msg
@@ -51,9 +54,49 @@ bodyHeader m =
                     []
                 , text "            "
                 , input [ type_ "submit", value "DuckDuckGo!" ] []
+                , timerSelector m
                 ]
             ]
         ]
+
+
+timerSelector : Model -> Html Msg
+timerSelector m =
+    div []
+        [ text "Refresh timer : "
+        , input [ (value << toString <| m.configuration.timerValue), (onInput (SetTimerValue << (Maybe.withDefault m.configuration.timerValue) << Result.toMaybe << String.toFloat)) ] []
+        , select [ onInput setTimerUnit ] (List.map (timerUnitOption m) <| Dict.toList timerUnits)
+        ]
+
+
+timerUnits : Dict String Time
+timerUnits =
+    Dict.fromList
+        [ ( "seconds", Time.second )
+        , ( "minutes", Time.minute )
+        ]
+
+
+timerUnitOption : Model -> ( String, Time ) -> Html Msg
+timerUnitOption m ( k, v ) =
+    option
+        ([ value k ]
+            ++ if v == m.configuration.timerUnit then
+                [ autofocus True ]
+               else
+                []
+        )
+        [ text k ]
+
+
+setTimerUnit : String -> Msg
+setTimerUnit text =
+    case Dict.get text timerUnits of
+        Just unit ->
+            SetTimerUnit unit
+
+        Nothing ->
+            SetTimerUnit Time.second
 
 
 printModel : Model -> List (Html Msg)
